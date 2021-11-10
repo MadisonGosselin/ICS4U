@@ -68,7 +68,7 @@ public class BubbleSort{
 			
 			while(direction == 0 && ( y >= 0 && current < array[y]) || direction == 1 && ( y >= 0 && current > array[y])) {
 				
-				array[y+1] = array[y];			//move everything up 
+				array[y+1] = array[y];			//move everything over 
 				y--;							//decrease y by 1 to check the next value against the current value
 		
 			} //end while that loops while y >= 0 and orders them in ascending or descending order depending on the direction
@@ -81,10 +81,26 @@ public class BubbleSort{
 	
 	public static int[] shellSort(int array[], int len, int direction) {
 		
+		int interval = 0;								//create a variable to hold the interval at which you want to search between
+		
+		for(interval = len/2; interval > 0; interval = interval/2) {
+			for(int x = interval; x < len; x++) {
+				
+				int temp = array[x];					//create a temp variable that holds the current value of then position in the array being scanned
+				int j = 0;								//create a variable that loops the for loop and tracks what pos in the array you are at
+				
+				for(j = x; j >= interval && array[j-interval] > temp; j -= interval) {
+					
+					array[j] = array[j-interval];		//swap them 
+					
+				} //end for loop that loops to find the correct pos to put the low number
+				array[j] = temp;						//put it in the correct spot
+			} //?? https://www.programiz.com/dsa/shell-sort
+		} //??
 		
 		return array;
 		
-	}
+	} //end shellSort()
 	
 	/**********************************************************
 	**  Method Name: printReportTitle()                      **
